@@ -6,6 +6,7 @@
 #include "mruby/array.h"
 #include "mruby/hash.h"
 #include "mruby/string.h"
+#include "mruby/value.h"
 
 #define E_JSON_PARSER_ERROR (mrb_class_get_under(mrb, mrb_module_get(mrb, "JSON"), "ParserError"))
 
@@ -512,6 +513,7 @@ static int
 json_parse_value(struct json_parser *parser, mrb_value *result)
 {
   mrb_state *mrb = parser->mrb;
+  *result = mrb_nil_value();
   int ch;
 
   do {
